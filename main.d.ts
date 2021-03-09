@@ -14,5 +14,5 @@ export interface SocketServer {
 	server: WebSocket.Server,
 	connection: (callback: (socket: SocketDecorator) => void) => void,
 }
-export function initWebsocketServer(url: string, protocols?: string | string[]): SocketDecorator;
+export function initWebsocketServer(options?: WebSocket.ServerOptions, callback?: () => void,): SocketServer;
 export function SocketDecoratorFactory(): SocketDecorator;
