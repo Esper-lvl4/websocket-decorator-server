@@ -45,7 +45,7 @@ function SocketDecoratorFactory(socket, {
     leaveRoom(name) {
       return leaveRoom(name, this);
     },
-    emitToRoom(name, event, data) {
+    emitToRoom({name, event, data}) {
       return emitToRoom({ name, event, data, excludedId: this.id });
     },
 	};
