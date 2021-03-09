@@ -12,9 +12,8 @@ function initWebsocketServer(options, callback) {
 	const prototype = {
 		connection(callback) {
 			this.server.on('connection', function connectionFunction(websocket) {
-        console.log(this.socketRooms);
-				const socket = SocketDecoratorFactory(websocket, { ...this.socketRooms._provideMethods() });
-        this.socketList.add(socket);
+				const socket = SocketDecoratorFactory(websocket, { ...props.socketRooms._provideMethods() });
+        props.socketList.add(socket);
 
 				socket.on('socket:initialization', function socketInitialization(data) {
 					const { id } = data;
