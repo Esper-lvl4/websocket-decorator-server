@@ -1,4 +1,6 @@
-function SocketDecoratorFactory(socket) {
+function SocketDecoratorFactory(socket, {
+  joinRoom, leaveRoom, emitToRoom,
+}) {
 	const props = {
 		id: undefined,
 		handlers: new Map(),
@@ -37,6 +39,15 @@ function SocketDecoratorFactory(socket) {
 			if (!id) return;
 			this.id = id;
 		},
+    joinRoom(name) {
+      return joinRoom(name, this);
+    },
+    leaveRoom(name) {
+      return leaveRoom(name, this);
+    },
+    emitToRoom(name, event, data) {
+      return emitToRoom({ name, event, data, excludedId: this.id });
+    },
 	};
 
 	const result = Object.create(prototype);
