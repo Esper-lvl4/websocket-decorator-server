@@ -10,7 +10,7 @@ function initWebsocketServer(options, callback) {
     socketRooms: SocketRoomsFactory(),
 	};
 	const prototype = {
-		connection(callback) {
+		connection(connectCallback) {
 			this.server.on('connection', function connectionFunction(websocket) {
 				const socket = SocketDecoratorFactory(websocket, { ...props.socketRooms._provideMethods() });
         props.socketList.add(socket);
@@ -21,7 +21,7 @@ function initWebsocketServer(options, callback) {
 					socket.off('socket:initialization');
 				});
 
-				callback(socket);
+				connectCallback(socket, props.socketRooms, props.socketList);
 			});
 		},
 	};

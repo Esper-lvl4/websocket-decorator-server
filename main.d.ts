@@ -40,7 +40,18 @@ export interface SocketServer {
 	server: WebSocket.Server,
   socketList: SocketList,
   socketRooms: SocketRooms,
-	connection: (callback: (socket: SocketDecorator) => void) => void,
+	connection: (callback: (
+    socket: SocketDecorator,
+  ) => void) => void,
+  connection: (callback: (
+    socket: SocketDecorator,
+    socketRooms: SocketRooms,
+  ) => void) => void,
+  connection: (callback: (
+    socket: SocketDecorator,
+    socketRooms: SocketRooms,
+    socketList: SocketList,
+  ) => void) => void,
 }
 
 export function initWebsocketServer(options?: WebSocket.ServerOptions, callback?: () => void,): SocketServer;
