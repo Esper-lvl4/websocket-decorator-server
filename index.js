@@ -12,11 +12,7 @@ function initWebsocketServer(options, callback) {
 	const prototype = {
 		connection(callback) {
 			this.server.on('connection', function connectionFunction(websocket) {
-				const socket = SocketDecoratorFactory(websocket, {
-          joinRoom: this.socketRooms.joinRoom.bind(this.socketRooms),
-          leaveRoom: this.socketRooms.leaveRoom.bind(this.socketRooms),
-          emitToRoom: this.socketRooms.emitToRoom.bind(this.socketRooms),
-        });
+				const socket = SocketDecoratorFactory(websocket, { ...this.socketRooms._provideMethods });
         this.socketList.add(socket);
 
 				socket.on('socket:initialization', function socketInitialization(data) {

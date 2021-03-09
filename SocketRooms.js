@@ -30,6 +30,13 @@ function SocketRoomsFactory() {
       });
       return true;
     },
+    _provideMethods() {
+      return {
+        joinRoom: (name, socket) => this.joinRoom(name, socket),
+        leaveRoom: (name, socket) => this.leaveRoom(name, socket),
+        emitToRoom: (options) => this.emitToRoom(options),
+      };
+    },
   };
   const result = Object.create(prototype);
   return Object.assign(result, props);
