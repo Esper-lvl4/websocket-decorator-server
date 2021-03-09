@@ -1,0 +1,25 @@
+{
+  "name": "websocket-decorator-server",
+  "version": "0.1.0",
+  "description": "Wrapper around ws package. Just to simplify the usage.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Esper-lvl4/websocket-decorator-server.git"
+  },
+  "keywords": [
+    "Websocket"
+  ],
+  "author": "Esper_lvl4",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Esper-lvl4/websocket-decorator-server/issues"
+  },
+  "homepage": "https://github.com/Esper-lvl4/websocket-decorator-server#readme",
+  "dependencies": {
+    "ws": "^7.4.4"
+  }
+}
