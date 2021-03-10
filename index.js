@@ -18,8 +18,8 @@ function initWebsocketServer(options, callback) {
 	const prototype = {
 		connection(connectCallback) {
 			this.server.on('connection', function connectionFunction(websocket) {
-				this.server.isAlive = true;
-				this.server.on('pong', heartbeat);
+				props.server.isAlive = true;
+				props.server.on('pong', heartbeat);
 
 				const socket = SocketDecoratorFactory(websocket, { ...props.socketRooms._provideMethods() });
         props.socketList.add(socket);
