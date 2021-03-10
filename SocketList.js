@@ -43,8 +43,7 @@ function SocketListFactory() {
   };
   const result = Object.create(prototype);
   Object.assign(result, props);
-
-  interval = setInterval(result.clearDisconnected, 30000);
+  interval = setInterval(() => result.clearDisconnected(), 30000);
   return result;
 }
 
