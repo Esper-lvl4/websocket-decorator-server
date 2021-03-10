@@ -1,4 +1,6 @@
 function SocketListFactory() {
+  let interval;
+
   const props = {
     sockets: {},
   };
@@ -22,9 +24,28 @@ function SocketListFactory() {
         this.sockets[key].emit(event, data);
       });
     },
+    clearDisconnected() {
+      Object.keys(this.sockets).forEach((key) => {
+        if (!this.sockets[key]) return;
+        const { socket } = this.sockets[key];
+        if (socket.isAlive === false) {
+          this.remove(key);
+          return socket.terminate();
+        }
+        socket.isAlive = false;
+        this.sockets[key].emit('ping');
+      });
+    },
+    destroy() {
+      clearInterval(interval);
+      Object.keys(this.sockets).forEach(key => this.remove(key));
+    },
   };
   const result = Object.create(prototype);
-  return Object.assign(result, props);
+  Object.assign(result, props);
+
+  interval = setInterval(result.clearDisconnected, 30000);
+  return result;
 }
 
 module.exports = SocketListFactory;

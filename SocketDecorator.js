@@ -48,6 +48,9 @@ function SocketDecoratorFactory(socket, {
     emitToRoom({name, event, data}) {
       return emitToRoom({ name, event, data, excludedId: this.id });
     },
+		confirmLife() {
+			this.socket.isAlive = true;
+		},
 	};
 
 	const result = Object.create(prototype);
@@ -67,6 +70,16 @@ function SocketDecoratorFactory(socket, {
 		if (handlers.length === 0) return;
 		handlers.forEach(handler => handler(data));
 	});
+
+	result.on('pong', function heartbeat() {
+		result.confirmLife();
+	});
+
+	result.on('ping', function clientIsAlive() {
+		result.confirmLife();
+	});
+
+	result.confirmLife();
 
 	return result;
 }
