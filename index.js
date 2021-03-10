@@ -34,7 +34,7 @@ function initWebsocketServer(options, callback) {
 			});
 
 			const interval = setInterval(function ping() {
-				this.server.clients.forEach(function each(client) {
+				props.server.clients.forEach(function each(client) {
 					if (client.isAlive === false) return client.terminate();
 
 					client.isAlive = false;
