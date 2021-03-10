@@ -48,7 +48,6 @@ function initWebsocketServer(options, callback) {
 		},
 	};
 
-	props.server.on()
 	const result = Object.create(prototype);
   return Object.assign(result, props);
 }
