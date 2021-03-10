@@ -14,7 +14,7 @@ export interface SocketRooms {
   emitToRoom: (options: {
     name: string,
     event: string,
-    data: any,
+    data?: any,
     excludedId?: string,
   }) => boolean,
 }
@@ -25,7 +25,7 @@ export interface SocketDecorator {
   _socketRooms: SocketRooms,
 	on: (event: string, handler: (data: any) => any) => any,
   off: (event: string, handler?: (data: any) => any) => void,
-	emit: (event: string, data: any) => void,
+	emit: (event: string, data?: any) => void,
 	getHandlers: (event: string) => ((data: any) => any)[],
 	setId: (id: string) => void,
   joinRoom: (name: string) => boolean,
@@ -33,7 +33,7 @@ export interface SocketDecorator {
   emitToRoom: (options: {
     name: string,
     event: string,
-    data: any,
+    data?: any,
   }) => boolean,
 }
 export interface SocketServer {
