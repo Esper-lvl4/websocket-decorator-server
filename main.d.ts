@@ -22,7 +22,7 @@ export interface SocketDecorator {
   id?: string,
 	handlers:globalThis.Map<string, ((data: any) => any)[]>,
 	socket: WebSocket,
-  _socketRooms: SocketRooms,
+  _additionalData: { [key: string]: any },
 	on: (event: string, handler: (data: any) => any) => any,
   off: (event: string, handler?: (data: any) => any) => void,
 	emit: (event: string, data?: any) => void,
@@ -35,6 +35,7 @@ export interface SocketDecorator {
     event: string,
     data?: any,
   }) => boolean,
+  getClientData: (key?: string) => any,
 }
 export interface SocketServer {
 	server: WebSocket.Server,

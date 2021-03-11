@@ -5,6 +5,7 @@ function SocketDecoratorFactory(socket, {
 		id: undefined,
 		handlers: new Map(),
 		socket,
+		_additionalData: {},
 	};
 
 	const prototype = {
@@ -51,6 +52,10 @@ function SocketDecoratorFactory(socket, {
 		confirmLife() {
 			this.socket.isAlive = true;
 		},
+		getClientData(key) {
+			if (key) return this.additionalData[key];
+			return this.additionalData;
+		},
 	};
 
 	const result = Object.create(prototype);
@@ -65,7 +70,8 @@ function SocketDecoratorFactory(socket, {
 			parsedInfo = null;
 		}
 		if (!parsedInfo) return;
-		const { event, data } = parsedInfo;
+		const { event, data, additionalData } = parsedInfo;
+		result._additionalData = additionalData || {};
 		const handlers = result.getHandlers(event);
 		if (handlers.length === 0) return;
 		handlers.forEach(handler => handler(data));
