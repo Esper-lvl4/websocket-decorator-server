@@ -13,11 +13,11 @@ function initWebsocketServer(options, callback) {
 		connection(connectCallback) {
 			this.server.on('connection', function connectionFunction(websocket) {
 				const socket = SocketDecoratorFactory(websocket, { ...props.socketRooms._provideMethods() });
-        props.socketList.add(socket);
 
 				socket.on('socket:initialization', function socketInitialization(data) {
 					const { id } = data;
 					socket.setId(id);
+					props.socketList.add(socket);
 					socket.off('socket:initialization');
 				});
 
