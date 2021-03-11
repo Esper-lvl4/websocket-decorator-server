@@ -40,6 +40,11 @@ function SocketListFactory() {
       clearInterval(interval);
       Object.keys(this.sockets).forEach(key => this.remove(key));
     },
+    _provideMethods() {
+      return {
+        emitToAll: (event, data) => this.emitToAll(event, data),
+      };
+    },
   };
   const result = Object.create(prototype);
   Object.assign(result, props);

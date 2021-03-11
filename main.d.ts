@@ -35,6 +35,7 @@ export interface SocketDecorator {
     event: string,
     data?: any,
   }) => boolean,
+  emitToAll: (event: string, data: any) => void,
   getClientData: (key?: string) => any,
 }
 export interface SocketServer {

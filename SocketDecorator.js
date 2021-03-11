@@ -1,5 +1,5 @@
 function SocketDecoratorFactory(socket, {
-  joinRoom, leaveRoom, emitToRoom,
+  joinRoom, leaveRoom, emitToRoom, emitToAll,
 }) {
 	const props = {
 		id: undefined,
@@ -49,6 +49,9 @@ function SocketDecoratorFactory(socket, {
     emitToRoom({name, event, data}) {
       return emitToRoom({ name, event, data, excludedId: this.id });
     },
+		emitToAll(event, data) {
+			return emitToAll(event, data);
+		},
 		confirmLife() {
 			this.socket.isAlive = true;
 		},
