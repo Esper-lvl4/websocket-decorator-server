@@ -53,8 +53,8 @@ function SocketDecoratorFactory(socket, {
 			this.socket.isAlive = true;
 		},
 		getClientData(key) {
-			if (key) return this.additionalData[key];
-			return this.additionalData;
+			if (key) return this._additionalData[key];
+			return this._additionalData;
 		},
 	};
 
