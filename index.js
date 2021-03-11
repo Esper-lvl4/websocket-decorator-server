@@ -19,9 +19,8 @@ function initWebsocketServer(options, callback) {
 					socket.setId(id);
 					props.socketList.add(socket);
 					socket.off('socket:initialization');
+					connectCallback(socket, props.socketRooms, props.socketList);
 				});
-
-				connectCallback(socket, props.socketRooms, props.socketList);
 			});
 
 			this.server.on('close', function close() {
